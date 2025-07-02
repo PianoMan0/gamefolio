@@ -8,7 +8,6 @@ const cols = canvasSize / box;
 const snakeImg = new Image();
 snakeImg.src = 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/09ee7828b305acaac68aaf45e3a75952f15071a8_image.png';
 
-// Facts about you
 const facts = [
   "I'm PianoMan0 — a full-stack developer with 5 years of experience!",
   "Besides programming, I play the piano (hence the name!)",
@@ -30,6 +29,7 @@ function initGame() {
   score = 0;
   isDead = false;
   document.getElementById('gameOver').classList.add('hidden');
+  document.getElementById('scoreDisplay').textContent = 'Score: 0';
   canvas.focus();
 }
 
@@ -102,6 +102,7 @@ function update() {
   // Eat apple
   if (head.x === apple.x && head.y === apple.y) {
     score++;
+    document.getElementById('scoreDisplay').textContent = `Score: ${score}`;
     placeApple();
   } else {
     snake.pop();
@@ -120,7 +121,6 @@ function endGame() {
   document.getElementById('gameOver').classList.remove('hidden');
 }
 
-// Controls
 document.addEventListener('keydown', function(e) {
   if (isDead) return;
   switch(e.key) {
@@ -147,7 +147,6 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
-// Restart
 function restartGame() {
   initGame();
   draw();
